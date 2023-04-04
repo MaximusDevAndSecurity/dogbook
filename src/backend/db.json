@@ -1,0 +1,12 @@
+{
+  "dogs": [
+    {
+      "name": "Fido",
+      "description": "A good dog"
+    },
+    {
+      "name": "Alfredo",
+      "description": "A bad dog"
+    }
+  ]
+}
