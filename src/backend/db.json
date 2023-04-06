@@ -2,11 +2,32 @@
   "dogs": [
     {
       "name": "Fido",
-      "description": "A good dog"
+      "nickname": "Fid",
+      "bio": "A good dog",
+      "pfp": "https://images.dog.ceo/breeds/pomeranian/n02112018_6113.jpg",
+      "age": 3,
+      "friends": [
+        {
+          "name": "Alfredo"
+        },
+        {
+          "name": "Rex"
+        }
+      ],
+      "online": true
     },
     {
       "name": "Alfredo",
-      "description": "A bad dog"
+      "nickname": "Alf",
+      "bio": "A bad dog",
+      "pfp": "https://images.dog.ceo/breeds/spaniel-welsh/n02102177_3995.jpg",
+      "age": 5,
+      "friends": [
+        {
+          "name": "Fido"
+        }
+      ],
+      "online": false
     }
   ]
 }
