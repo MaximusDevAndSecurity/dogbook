@@ -21,9 +21,10 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(logger)
 app.use(express.static(staticPath))
-console.log('database', db.data.dogs)
+
 //request handlers
 app.get('/dogs', (req, res) => {
+    db.read()
     res.header("Access-Control-Allow-Origin", "*");
     res.send(db.data.dogs)
 })
@@ -31,13 +32,31 @@ app.get('/dogs', (req, res) => {
 app.post('/dogs', (req, res) => {
     db.read()
     res.header("Access-Control-Allow-Origin", "*");
-    const pfp = req.body.pfp
-    db.data.dogs.find(dog => dog.name === 'Fido').pfp = pfp
-    console.log('server', req.body.pfp)
-    console.log('server', db.data.dogs)
-    res.send(db.data.dogs)
+    const dog = req.body
+    db.data.dogs.push(dog)
     db.write()
-
+})
+// delete dog :(
+app.delete('/dogs/:name', (req, res) => {
+    db.read()
+    //if the deleted dog is in friend list, remove it
+    db.data.dogs.forEach(dog => {
+        if (dog.friends.includes(req.params.name)) {
+            dog.friends = dog.friends.filter(friend => friend !== req.params.name)
+        }
+    })
+    const name = req.params.name
+    db.data.dogs = db.data.dogs.filter(dog => dog.name !== name)
+    db.write()
+    res.send(db.data.dogs)
+})
+// Put dog pfp to dog object
+app.put('/dogs/:name', (req, res) => {
+    db.read()
+    const name = req.params.name
+    db.data.dogs = db.data.dogs.map(dog => dog.name === name ? { ...dog, ...req.body } : dog)
+    db.write()
+    res.send(db.data.dogs)
 })
 
 export { app }

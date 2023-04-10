@@ -1,33 +1,48 @@
 {
   "dogs": [
     {
-      "name": "Fido",
-      "nickname": "Fid",
-      "bio": "A good dog",
-      "pfp": "https://images.dog.ceo/breeds/pomeranian/n02112018_6113.jpg",
-      "age": 3,
+      "name": "Wolverine",
+      "nickname": "Wolf",
+      "age": "3",
+      "bio": "kind as long as you dont get on his bad side",
       "friends": [
-        {
-          "name": "Alfredo"
-        },
-        {
-          "name": "Rex"
-        }
+        "Panther"
       ],
-      "online": true
+      "online": true,
+      "pfp": "https://images.dog.ceo/breeds/briard/n02105251_7058.jpg"
+    },
+    {
+      "name": "Panther",
+      "nickname": "Zorro",
+      "age": "7",
+      "bio": "A cool dog",
+      "friends": [
+        "Wolverine"
+      ],
+      "online": false,
+      "pfp": "https://images.dog.ceo/breeds/puggle/IMG_153357.jpg"
     },
     {
       "name": "Alfredo",
       "nickname": "Alf",
-      "bio": "A bad dog",
-      "pfp": "https://images.dog.ceo/breeds/spaniel-welsh/n02102177_3995.jpg",
-      "age": 5,
+      "age": "5",
+      "bio": "Cute but deadly",
       "friends": [
-        {
-          "name": "Fido"
-        }
+        "Katten Gustav"
       ],
-      "online": false
+      "online": true,
+      "pfp": "https://images.dog.ceo/breeds/mastiff-bull/n02108422_3749.jpg"
+    },
+    {
+      "name": "Katten Gustav",
+      "nickname": "Gus",
+      "age": "13",
+      "bio": "What is a cat doing in here?",
+      "friends": [
+        "Alfredo"
+      ],
+      "online": false,
+      "pfp": "https://images.dog.ceo/breeds/schnauzer-giant/n02097130_6044.jpg"
     }
   ]
 }

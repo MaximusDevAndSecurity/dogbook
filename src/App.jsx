@@ -1,77 +1,46 @@
 import { useState, useEffect } from "react";
 import {
   Routes, Route,
-  useParams,
-  useNavigate
 } from "react-router-dom";
 import Homepage from "./Components/Homepage";
 import axios from "axios";
-import Profilepage from "./Components/Profilepage"; 
-//Todo add edit page
+import Profilepage from "./Components/Profilepage";
+import Createpage from "./Components/Createpage";
+import Editpage from "./Components/Editpage";
+//Todo!!! Fix friends list to show all dogs except the current dog and if dog is already friends with them
 
 function App() {
   // base const for app
-  const urlPFP = "https://dog.ceo/api/breeds/image/random"
   const databaseURL = "http://localhost:1337/dogs"
   const [dogs, setDogs] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [pfp, setPfp] = useState([])
-  
-  // get pfp from api and send to database
-  /*
-  const getPfp = async () =>{
-    await axios.get(urlPFP)
-    .then((response) => {
-      setPfp(response.data.message)
-      console.log('get pfp', pfp)
-      axios.post(databaseURL, {
-        pfp: response.data.message
-      }
-          )
-      .then((response) => {
-        console.log('post pfp', pfp)
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    })
-  }
-  */
-  
+
   // get dogs from database
-  const getDogs =  () => {
-     axios.get(databaseURL)
-      .then((response) => {
-        setDogs(response.data)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      }
-      )
-}
-
-  useEffect(() => {
-   // getPfp()
-    getDogs()
-  }, [])
-
-console.log('app pfp',pfp)
-console.log('app Dogos',dogs)
+useEffect(() => {
+  const getDogs = async () => {
+    axios.get(databaseURL)
+    const response = await axios.get(databaseURL)
+    setDogs(response.data)
+    setIsLoading(false)
+  }
+  getDogs()
+}, [])
 
 if (isLoading) {
   return <h1>Loading...</h1>
-}else {
+}
+else {
 
   return (
     <div>
       <h1>Dogbook</h1>
       <Routes>
-        <Route path="/" element={<Homepage dogs={dogs} />} />
+        <Route path="/" element={<Homepage  dogs={dogs} setDogs={setDogs} />} />
         <Route path='/profile/:id' 
-        element={<Profilepage  dogs={dogs}  />}
+        element={<Profilepage  dogs={dogs} setDogs={setDogs}  />}
          />
+         <Route path='/create' element={<Createpage dogs={dogs} setDogs={setDogs} />} />
+         <Route path="/edit/:id" element={<Editpage dogs={dogs} setDogs={setDogs} />}/>
       </Routes>
     </div>
   )
