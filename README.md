@@ -1,5 +1,6 @@
 # Dogbook 
-Start application with npm run start.
+
+Start application with "npm start" after install is finished proceed with => "npm run start".
 
 
 
